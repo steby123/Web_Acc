@@ -1,0 +1,105 @@
+.te {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+    padding: 30px;
+    border-radius: 29px;
+    margin-right: auto; 
+    margin-top: 20px;
+    padding: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+    width: 100vh;
+    height: 50%;
+}
+
+.tambah {
+    font-family: 'Inter', sans-serif; 
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.search label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif; 
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.hunt{
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+    outline: none;
+    border: none;
+}
+
+/* Add styles for the table and its components */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead {
+    border: 1px solid #dddddd;
+}
+
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+tbody{
+    background-color: rgba(231, 231, 231, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+}
+
+tbody tr{
+    border: 1px solid #dddddd;
+}
+
+.thumbnail {
+    max-width: 10%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.td button.btn {
+    padding: 8px 16px;
+    background-color: #007bff; 
+    color: #ffffff; /* Text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px; 
+    font-size: 14px;
+    transition: background-color 0.3s ease; 
+
+    &:hover {
+        background-color: #0056b3; 
+    }
+}
+
+td button.btn.delete {
+    background-color: #dc3545; 
+    border: none;
+}
+
+td button.btn.delete:hover {
+    background-color: #bd2130; 
+}
+
+td button.btn.edit{
+    background-color:'rgba(132, 243, 177, 1)';
+}

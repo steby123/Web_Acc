@@ -1,0 +1,49 @@
+.navbar {
+    position: fixed;
+    background: rgba(255, 255, 255, 1);
+    width: 80%;
+    height: 95px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.margin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; 
+}
+
+.date {
+    width: 40%;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.logo {
+    display: inline;
+}
+
+.e1 {
+    padding: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        width: 100%; /* Set the width to 100% for mobile devices */
+    }
+
+    .date {
+        width: 100%; /* Adjust the width for mobile devices */
+    }
+
+    .margin {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+}

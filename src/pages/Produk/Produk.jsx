@@ -1,0 +1,124 @@
+import {useCallback, useEffect, useState} from 'react'
+import Navbar from '../../component/Navbar/Navbar';
+import Sidebar from '../../component/Sidebar/Sidebar';
+import classes from './Produk.module.css';
+import TableMakanan from './TableMakanan';
+
+const Produk = () => {
+    const [name, setName] = useState('');
+    const [harga, setHarga] = useState('');
+    const [imageURL, setImageURL] = useState('');
+    const [randomNumber, setRandomNumber] = useState('');
+    const [push, setPush] = useState([]);
+    const [error, setError] = useState(false);
+    const [focus, setFocus] = useState(false);
+    const [focus1, setFocus1] = useState(false);
+    const [focus2, setFocus2] = useState(false);
+
+    const resetHandler = () => {
+        setName('');
+        setHarga('');
+        setImageURL('');
+    }
+
+    const formValidation = (e) => {
+        e.preventDefault();
+        const newData = {
+            name,
+            harga,
+            imageURL,
+            randomNumber
+        };
+        console.log(name, harga, imageURL, randomNumber);
+
+        if(name.trim().toString() && harga <= 4){
+            return false;
+        }
+        setPush((previous) => [...previous, newData]);
+    };
+
+    const newNumber = useCallback (() => {
+        setRandomNumber(Math.floor(Math.random().toLocaleString() * 100))
+    },[]);
+
+    useEffect(() => {
+        newNumber();
+    },[newNumber])
+    
+    const deleteHandler = (index) => {
+        setPush((previous) => previous.filter((_, i) => i !== index));
+    };
+
+    return(
+        <div className={classes.container}>
+            <Navbar />
+            <Sidebar />
+            <div className={classes.title}>
+                <p>Data Customer</p>
+            </div>
+
+            <div className={classes.bentuk}>
+                <div className={classes.data}>
+                    <h2 className={classes.tambah}>Form Tambah Data</h2>
+                </div>
+                <div>
+                    <h5 style={{color:'rgba(171, 171, 171, 1)'}}>Kode Menu</h5>
+                    <h5>NM23-00{randomNumber}</h5>
+                </div>
+                <form onSubmit={formValidation} className={classes.isi}>
+                    <div className={classes.kolom}>
+                        <label>Nama Makanan</label>
+                        <input
+                            className={`${classes.input} ${error ? classes.error : ''} ${focus ? classes.focus : ''}`}
+                            placeholder='Nama Makanan'
+                            type='text'
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value.trim().length <= 0) {
+                                    setError(true);
+                                } else {
+                                    setError(false);
+                                    setName(value);
+                                }
+                            }}
+                            onFocus={() => setFocus(true)}
+                            onBlur={() => setFocus(false)}
+                            value={name}
+                            required
+                        />
+                        <label>Harga</label>
+                        <input
+                            className={`${classes.input} ${focus1 ? classes.focus1 : ''}`}
+                            placeholder='Harga'
+                            type='number'
+                            onChange={(e) => setHarga(e.target.value)}
+                            onFocus={() => setFocus1(true)}
+                            onBlur={() => setFocus1(false)}
+                            value={harga}
+                            required
+                        />
+                        <label>Foto Makanan</label>
+                        <input
+                            className={`${classes.input} ${focus2 ? classes.focus2 : ''}`}
+                            type='file'
+                            onChange={(e) => {
+                                const file = e.target.files[0];
+                                setImageURL(URL.createObjectURL(file));
+                            }}
+                            onFocus={() => setFocus2(true)}
+                            onBlur={() => setFocus2(false)}
+                            required
+                        />
+                        <div className={classes.tekan}>
+                            <button type='submit' style={{ background: 'rgba(132, 243, 177, 1)' }}>Proses</button>
+                            <button onClick={resetHandler} style={{background:'rgba(255, 133, 133, 1)'}}>Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <TableMakanan push={push} onDelete={deleteHandler}/>
+        </div>
+    )
+}
+
+export default Produk;
