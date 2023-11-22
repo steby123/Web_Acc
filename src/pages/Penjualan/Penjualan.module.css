@@ -1,11 +1,12 @@
 .container {
-    background: rgba(244, 236, 250, 1);
+    background-image: linear-gradient(to bottom right, #00C0FF, #4218B8);
     width: 100%;
 }
 
 .title {
     padding: 5px;
     margin-left: 21%;
+    margin-top: 5%;
 }
 
 .title h1 {

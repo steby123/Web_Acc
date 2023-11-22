@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  background-image: linear-gradient(to bottom right, #00C0FF, #4218B8);
+  text-align: center;
+  color: white;
+  user-select: none;
+  padding-top: 18vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.h1 {
+  font-size: 80px;
+  margin: 0;
+  text-shadow: 15px 5px 2px black;
+}
+
+.conbtn{
+    margin: 60px auto;
+}
+
+h3 {
+  font-size: 40px;
+  margin: 10px;
+  text-shadow: 15px 5px 2px  black;
+}
+
+.perror {
+  font-size: 18px;
+  margin: 30px;
+  text-shadow: 15px 5px 2px  black;
+}
+
+p:last-of-type {
+  margin-bottom: 35px;
+}
+
+.btnerror{
+    height: 50px;
+    width:30%;
+    border: none;
+    border-radius: 10px;
+    box-shadow:10px 5px 2px black ;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    letter-spacing: 1px;
+    
+}
+
+.btnerror:hover{
+    background-image: linear-gradient(to bottom right, #00C0FF, #4218B8);
+    color: white;
+    
+}
