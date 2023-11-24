@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import UserIcon from '../../assets/noun-user-6247989.svg';
+import LogOutIcon from '../../assets/logout_FILL0_wght400_GRAD0_opsz24.svg';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -32,6 +33,7 @@ const Navbar = () => {
                 <div className="date">{formatDate}</div>
                 <div className="logo">
                     <img src={UserIcon} alt='user' className='e1' />
+                    <img src={LogOutIcon} alt='user' className='e1' />
                 </div>
             </div>
         </div>

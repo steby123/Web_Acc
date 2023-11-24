@@ -1,12 +1,13 @@
-import './App.css'
 import LoginForm from './pages/Login/Login';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Penjualan from './pages/Penjualan/Penjualan';
 import Produk from './pages/Produk/Produk';
 import DashBoard from './pages/Dashboard/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
+import SignUp from './pages/signup/SignUp';
 
 const App =() => {
+  
 
   return (
     <>
@@ -15,7 +16,10 @@ const App =() => {
           <Route exact path="/">
             <LoginForm />
           </Route>
-          <Route exact path="/dashboard">
+          <Route path="/register">
+            <SignUp />
+          </Route> 
+          <Route path="/dashboard">
             <DashBoard />
           </Route>
           <Route path="/penjualan">
@@ -27,7 +31,9 @@ const App =() => {
           <Route path="/not-found">
             <NotFound />
           </Route>
-          <Redirect to="/not-found" />
+          <Route path="*">
+            <Redirect to="/not-found" />
+          </Route>
         </Switch>
       </BrowserRouter>
     </>

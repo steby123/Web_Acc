@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { auth, provider } from '../../firebase/firebase';
 import { signInWithPopup } from 'firebase/auth';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import LoginUser from '../../assets/noun-user-1994976.svg';
 import PassWordUser from '../../assets/noun-password-1648593.svg';
 import './Login.css';
@@ -89,6 +90,7 @@ const LoginForm = () => {
                     <div className="text2">
                         <p> Copyright @2023.UMKM Makanan Khas</p>
                         <p>Tanjungpinang</p>
+                        <p>Don't have account? <Link to="/register">SignUp</Link></p>
                     </div>
                 </form>
             </div>
