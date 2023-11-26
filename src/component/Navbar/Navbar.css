@@ -35,6 +35,7 @@
     display: inline-block;
     height: 40px;
     width: 50px;
+    cursor: pointer;
 }
 
 /* Media query for smaller screens (up to 768px) */

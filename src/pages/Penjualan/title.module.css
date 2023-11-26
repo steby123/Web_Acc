@@ -1,0 +1,37 @@
+.title {
+    padding: 5px;
+    margin-left: 21%;
+    margin-top: 5%;
+}
+
+.title h1 {
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 10px;
+    padding: 10px; 
+}
+
+.title1,
+.title2{
+    width: 35%;
+    padding: 10px;
+    margin-top: 20px ;
+    margin-left: 21%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+}
+
+.title1 h2,
+.title2 h2{
+    font-family: Inter;
+    margin: 10px;
+    padding: 10px;
+    font-size: 32px;
+    line-height: 39px;
+    text-align: center;
+}

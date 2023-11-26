@@ -1,37 +1,49 @@
 import { useEffect, useState } from 'react';
 import { auth, provider } from '../../firebase/firebase';
 import { signInWithPopup } from 'firebase/auth';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import LoginUser from '../../assets/noun-user-1994976.svg';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import LoginUser from '../../assets/mail_FILL0_wght400_GRAD0_opsz24.svg';
 import PassWordUser from '../../assets/noun-password-1648593.svg';
 import './Login.css';
+import useLogin from '../hook/useLogin';  // Import the correct hook name
 
 const LoginForm = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [value, setValue] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const emailNotValid = submitted && !email.includes('@');
+    const passwordNotValid = submitted && password.trim().length < 6;
+    const history = useHistory();
+    const { login,isPending,} = useLogin();  // Correct hook name
 
-    const validateForm = (event) => {
+    const validateForm = async (event) => {
         event.preventDefault();
+        setEmail('');
+        setPassword('');
+        setSubmitted(true);
 
-        const username1 = "ADMIN123";
-        const password1 = "KamuHebat1!";
+        try {
+            await login(email, password);
 
-        if (username === username1 && password === password1) {
-            window.location.href = "http://localhost:5173/dashboard";
-        } else {
-            setMessage("Wrong username and/or password.");
-        }
-
-        if (username.length < 7 && password.length < 8) {
-            setMessage("Username and password must be at least 7 characters.");
-        } else if (username.length < 7) {
-            setMessage("Username must be at least 7 characters.");
-        } else if (password.length < 7) {
-            setMessage("Password must be at least 7 characters.");
-        } else {
-            setMessage('');
+            // If no error, check for minimum length requirements
+            if (email.length < 7 || password.length < 8) {
+                setMessage("Email must be at least 7 characters and password must be at least 8 characters.");
+            } else {
+                setMessage('');
+                history.push('/dashboard');
+                // Redirect to the dashboard or any other page after successful login
+            }
+        } catch (error) {
+            console.error(error.message);
+            if (!email.includes('@')) {
+                setMessage('Invalid email. Please enter a valid email address.');
+            } else if (password.trim().length < 6) {
+                setMessage('Invalid password. Password must be at least 6 characters.');
+            } else {
+                setMessage('Invalid email or password.');
+            }
         }
     };
 
@@ -40,7 +52,7 @@ const LoginForm = () => {
             setValue(data.user.email);
             setValue(event.target.value)
             localStorage.setItem("email", data.user.email)
-            window.location.href = "http://localhost:5173/dashboard";
+            history.push('/dashboard');
         })
     };
 
@@ -66,12 +78,13 @@ const LoginForm = () => {
                     <div className="image-input">
                     <img src={LoginUser} alt='user' />
                         <input 
-                            type="text" 
+                            type="email" 
                             id="username" 
+                            style={{background : emailNotValid ? '#fed2d2' : '#d1d5db'}}
                             name="text" 
-                            placeholder="Admin" 
-                            value={username} 
-                            onChange={(e) => setUsername(e.target.value)}    
+                            placeholder="Email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)}    
                         />
                     </div>
                     <div className="image-input">
@@ -79,18 +92,19 @@ const LoginForm = () => {
                         <input 
                             type="password" 
                             id="password" 
+                            style={{background: passwordNotValid ? '#fed2d2' : '#d1d5db'}}
                             name="password" 
                             placeholder="********" 
                             value={password} 
                             onChange={(e) => setPassword(e.target.value)}    
                         />
                     </div>
-                    <button className="opacity" type="submit">Login</button>
-                    <button className='opacity' type='submit' onClick={signIn}>Google</button>
+                    {!isPending && <button className="opacity" type="submit">Login</button>}
+                    {isPending && <button className="opacity" type="submit">Login</button>}
+                    {!isPending && <button className='opacity' type='button' onClick={signIn}>Google</button>}
                     <div className="text2">
-                        <p> Copyright @2023.UMKM Makanan Khas</p>
-                        <p>Tanjungpinang</p>
-                        <p>Don't have account? <Link to="/register">SignUp</Link></p>
+                        <p> Copyright @2023.UMKM Makanan Khas Tanjungpinang</p>
+                        <p>Don't have account? <Link to="/register"  style={{ textDecoration: "none", color: "blue" }}>SignUp</Link></p>
                     </div>
                 </form>
             </div>

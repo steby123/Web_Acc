@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import UserIcon from '../../assets/noun-user-6247989.svg';
 import LogOutIcon from '../../assets/logout_FILL0_wght400_GRAD0_opsz24.svg';
+import SignOutUser from '../../pages/hook/useSignOut';
 import './Navbar.css';
 
 const Navbar = () => {
     const [valid, setValid] = useState(new Date());
+    const {handleSignOut} = SignOutUser();
 
     useEffect(() => {
         const date = setInterval(() =>{
@@ -33,7 +35,7 @@ const Navbar = () => {
                 <div className="date">{formatDate}</div>
                 <div className="logo">
                     <img src={UserIcon} alt='user' className='e1' />
-                    <img src={LogOutIcon} alt='user' className='e1' />
+                    <img src={LogOutIcon} alt='user' className='e1' onClick={handleSignOut} />
                 </div>
             </div>
         </div>

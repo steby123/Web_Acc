@@ -3,25 +3,7 @@
     width: 100%;
 }
 
-.title {
-    padding: 5px;
-    margin-left: 21%;
-    margin-top: 5%;
-}
 
-.title h1 {
-    font-family: Inter;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 39px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin: 10px;
-    padding: 10px; 
-}
-
-.title1,
-.title2,
 .title3 {
     width: 35%;
     padding: 10px;
@@ -32,27 +14,10 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
 }
 
-.title1 h2,
-.title2 h2,
 .title3 .ketik {
     font-family: Inter;
     margin: 10px;
     padding: 10px;
-}
-
-.title1 h2,
-.title2 h2 {
-    font-size: 32px;
-    line-height: 39px;
-}
-
-.title2 h2 {
-    font-size: 24px;
-    line-height: 30px;
-    text-align: center;
-}
-
-.title3 .ketik {
     width: 94%;
     padding: 10px;
     top: 345px;
@@ -74,7 +39,7 @@
 
 .image {
     text-align: center; 
-    width:30%;
+    max-width:40%;
     margin: 20px; 
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
@@ -85,7 +50,7 @@
 
 .image img {
     padding: 10px;
-    width: 200px;
+    max-width: 150px;
     height: 200px;
     transition: 1s;
 }
@@ -145,10 +110,34 @@
     transform: scale(1);
 }
 
+@media screen and (max-width: 768px) {
+    .foto {
+        width: 90%;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .center_button {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .foto {
+        width: 100%;
+    }
+
+    .center_button {
+        width: 80%;
+    }
+}
+
 .steby {
     margin: -886px;
     width: 36%;
-    height: 49%;
+    min-height: 55%;
     padding: 5px;
     margin-right: 20px;
     float: right;
@@ -203,18 +192,24 @@ hr {
 .steby3 {
     display: flex;
     flex-direction: row;
-    margin: 10px;
     justify-content: space-between;
 }
 
-.steby3 p {
+.steby3 th {
+    text-align: center; 
+    vertical-align: middle; 
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     letter-spacing: 0em;
-    text-align: left;
     color: rgba(154, 151, 151, 1);
+    width: 200px;
+}
+
+.steby3 table{
+    width: 100%;
+    border-collapse: collapse; 
 }
 
 .steby4 {
@@ -230,9 +225,37 @@ hr {
     border-radius: 10px;
     margin: 20px;
     padding: 10px;
+    width: 100%;
     color: rgba(0, 0, 0, 1);
     background-color: rgba(219, 251, 241, 1);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.sudah {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.sudah td {
+    padding: 8px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center; /* Center the content */
+    color: rgba(154, 151, 151, 1);
+    min-width: 151px;
+}
+
+.centerItem{
+    cursor: pointer;
 }
 
 .steby5 {

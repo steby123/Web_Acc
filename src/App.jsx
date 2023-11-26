@@ -7,7 +7,6 @@ import NotFound from './pages/NotFound/NotFound';
 import SignUp from './pages/signup/SignUp';
 
 const App =() => {
-  
 
   return (
     <>
