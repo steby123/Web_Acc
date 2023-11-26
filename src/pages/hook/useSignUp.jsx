@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getAuth, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 const UserSignUp = () => {
   const [error, setError] = useState(null);
@@ -16,14 +16,14 @@ const UserSignUp = () => {
       }
 
       const auth = getAuth();
-      const res = await signOut(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
       console.log(res.user);
 
       if (!res.user) {
         throw new Error('Could not complete signup');
       }
 
-      await signOut(auth.currentUser, { displayName: username });
+      await createUserWithEmailAndPassword(auth.currentUser, { displayName: username });
       setIsPending(false);
     } catch (err) {
       console.error(err.message);

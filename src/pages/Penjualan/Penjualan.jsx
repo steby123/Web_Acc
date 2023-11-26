@@ -161,4 +161,4 @@
         )
     }
 
-    export default Penjualan;
+export default Penjualan;
