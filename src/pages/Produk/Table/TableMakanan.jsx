@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import EditProdukIcon from '../../../assets/edit_FILL0_wght400_GRAD0_opsz24.svg';
+import DeleteProdukIcon from '../../../assets/delete_FILL0_wght400_GRAD0_opsz24.svg';
 import classes from './TableMakanan.module.css';
 
 const TableMakanan = ({ push, onDelete }) => {
@@ -39,7 +42,7 @@ const TableMakanan = ({ push, onDelete }) => {
                 <tbody>
                     {filteredPush.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.randomNumber}</td>
+                            <td>NM23-00{item.autoIncrement}</td>
                             <td>{item.name}</td>
                             <td>{item.harga}</td>
                             <td>
@@ -51,9 +54,9 @@ const TableMakanan = ({ push, onDelete }) => {
                                 />
                             )}
                             </td>
-                            <td>
-                                <button className={`${classes.btn} ${classes.edit}`}>Edit</button>
-                                <button className={`${classes.btn} ${classes.delete}`} onClick={() => onDelete(index)}>Delete</button>
+                            <td className={classes.buttonContainer}>
+                                <button className={`${classes.btn} ${classes.edit}`} ><Link to="edit-produk" className={classes.edit_produk}><img src={EditProdukIcon} /></Link></button>
+                                <button className={`${classes.btn} ${classes.delete}`} onClick={() => onDelete(index)}><img src={DeleteProdukIcon} /></button>
                             </td>
                         </tr>
                     ))}

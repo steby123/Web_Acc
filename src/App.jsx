@@ -1,10 +1,11 @@
 import LoginForm from './pages/Login/Login';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Penjualan from './pages/Penjualan/Penjualan';
-import Produk from './pages/Produk/Produk';
+import Produk from './pages/Produk/Produk/Produk';
 import DashBoard from './pages/Dashboard/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
 import SignUp from './pages/signup/SignUp';
+import EditProduk from './pages/Produk/EditProduk/EditProduk';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 const App =() => {
 
@@ -26,6 +27,9 @@ const App =() => {
           </Route>
           <Route path="/produk">
             <Produk />
+          </Route>
+          <Route path="/edit-produk">
+            <EditProduk />
           </Route>
           <Route path="/not-found">
             <NotFound />

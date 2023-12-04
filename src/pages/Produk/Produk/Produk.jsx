@@ -1,14 +1,14 @@
-import {useCallback, useEffect, useState} from 'react'
-import Navbar from '../../component/Navbar/Navbar';
-import Sidebar from '../../component/Sidebar/Sidebar';
+import { useState} from 'react'
+import Navbar from '../../../component/Navbar/Navbar';
+import Sidebar from '../../../component/Sidebar/Sidebar';
 import classes from './Produk.module.css';
-import TableMakanan from './TableMakanan';
+import TableMakanan from '../Table/TableMakanan';
 
 const Produk = () => {
     const [name, setName] = useState('');
     const [harga, setHarga] = useState('');
     const [imageURL, setImageURL] = useState('');
-    const [randomNumber, setRandomNumber] = useState('');
+    const [autoIncrement, setAutoIncrement] = useState(1);
     const [push, setPush] = useState([]);
     const [error, setError] = useState(false);
     const [focus, setFocus] = useState(false);
@@ -27,23 +27,16 @@ const Produk = () => {
             name,
             harga,
             imageURL,
-            randomNumber
+            autoIncrement
         };
-        console.log(name, harga, imageURL, randomNumber);
+        console.log(name, harga, imageURL, autoIncrement);
 
         if(name.trim().toString() && harga <= 4){
             return false;
         }
         setPush((previous) => [...previous, newData]);
+        setAutoIncrement((prev) => prev + 1);
     };
-
-    const newNumber = useCallback (() => {
-        setRandomNumber(Math.floor(Math.random().toLocaleString() * 100))
-    },[]);
-
-    useEffect(() => {
-        newNumber();
-    },[newNumber])
     
     const deleteHandler = (index) => {
         setPush((previous) => previous.filter((_, i) => i !== index));
@@ -63,7 +56,7 @@ const Produk = () => {
                 </div>
                 <div>
                     <h5 style={{color:'rgba(171, 171, 171, 1)'}}>Kode Menu</h5>
-                    <h5>NM23-00{randomNumber}</h5>
+                    <h5>NM23-00{autoIncrement}</h5>
                 </div>
                 <form onSubmit={formValidation} className={classes.isi}>
                     <div className={classes.kolom}>
@@ -110,8 +103,13 @@ const Produk = () => {
                             required
                         />
                         <div className={classes.tekan}>
-                            <button type='submit' style={{ background: 'rgba(132, 243, 177, 1)' }}>Proses</button>
-                            <button onClick={resetHandler} style={{background:'rgba(255, 133, 133, 1)'}}>Reset</button>
+                            <button 
+                                type='submit' 
+                                style={{ background: 'rgba(132, 243, 177, 1)' }}>Proses</button>
+                            <button 
+                                type='submit' 
+                                onClick={resetHandler} 
+                                style={{background:'rgba(255, 133, 133, 1)'}}>Reset</button>
                         </div>
                     </div>
                 </form>
