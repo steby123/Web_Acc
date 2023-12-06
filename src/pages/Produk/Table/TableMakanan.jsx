@@ -55,7 +55,11 @@ const TableMakanan = ({ push, onDelete }) => {
                             )}
                             </td>
                             <td className={classes.buttonContainer}>
-                                <button className={`${classes.btn} ${classes.edit}`} ><Link to="edit-produk" className={classes.edit_produk}><img src={EditProdukIcon} /></Link></button>
+                                <button className={`${classes.btn} ${classes.edit}`} >
+                                    <Link to={`/edit-produk/${index}`} className={classes.edit_produk}>
+                                        <img src={EditProdukIcon} />
+                                    </Link>
+                                </button>
                                 <button className={`${classes.btn} ${classes.delete}`} onClick={() => onDelete(index)}><img src={DeleteProdukIcon} /></button>
                             </td>
                         </tr>

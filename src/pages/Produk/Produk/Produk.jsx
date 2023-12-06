@@ -47,7 +47,7 @@ const Produk = () => {
             <Navbar />
             <Sidebar />
             <div className={classes.title}>
-                <p>Data Customer</p>
+                <p>Data Menu Makan</p>
             </div>
 
             <div className={classes.bentuk}>

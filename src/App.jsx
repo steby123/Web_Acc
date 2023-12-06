@@ -28,7 +28,7 @@ const App =() => {
           <Route path="/produk">
             <Produk />
           </Route>
-          <Route path="/edit-produk">
+          <Route path="/edit-produk/:id">
             <EditProduk />
           </Route>
           <Route path="/not-found">

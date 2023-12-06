@@ -11,15 +11,104 @@
 }
 
 .title {
+    padding: 10px;
     margin-top: -37%;
-    margin-left: -10%;
+    margin-left:21%;
+    min-width: 350px;
 }
 
 .title p {
+    padding: 10px;
     font-family: 'Inter', sans-serif; 
-    font-size: 20px;
+    font-size: 32px;
     font-weight: bold;
     line-height: 17px;
     letter-spacing: 0em;
     text-align: left;
+    min-width: 80%;
+    min-height: 130%;
 }
+
+.context{
+    width: 80%; /* Adjusted for responsiveness */
+    max-width: 400px; /* Added max-width for larger screens */
+    height: 400px;
+    margin-top: -7%;
+    margin-left: -19%;
+    margin-right: auto;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
+}
+
+.upload h2{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-shadow:rgba(0, 0, 0, 0.25);
+}
+
+.menu{
+    margin-top: 10%;
+}
+
+p{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+label{
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(171, 171, 171, 1);
+}
+
+.pilihFile{
+    color:rgba(217, 217, 217, 1);
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+.pencet{
+    margin: 20% auto auto; /* Adjusted for responsiveness */
+    min-width: 60%;
+}
+
+.pencet button{
+    width: 80px;
+    height: 39px;
+    border-radius: 5px;
+    border: 1px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+/* Media Query for smaller screens */
+@media only screen and (max-width: 768px) {
+    .context {
+        width: 90%;
+        max-width: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pencet {
+        margin: 20% auto auto;
+        min-width: 80%;
+    }
+}
+
+
