@@ -1,19 +1,22 @@
-import { useState} from 'react'
+import { useState, useContext } from 'react'
 import Navbar from '../../../component/Navbar/Navbar';
 import Sidebar from '../../../component/Sidebar/Sidebar';
 import classes from './Produk.module.css';
 import TableMakanan from '../Table/TableMakanan';
+
+import { AppContext } from '../../../context/context';
 
 const Produk = () => {
     const [name, setName] = useState('');
     const [harga, setHarga] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [autoIncrement, setAutoIncrement] = useState(1);
-    const [push, setPush] = useState([]);
     const [error, setError] = useState(false);
     const [focus, setFocus] = useState(false);
     const [focus1, setFocus1] = useState(false);
     const [focus2, setFocus2] = useState(false);
+
+    const { productItems, setProductItems } = useContext(AppContext);
 
     const resetHandler = () => {
         setName('');
@@ -34,12 +37,12 @@ const Produk = () => {
         if(name.trim().toString() && harga <= 4){
             return false;
         }
-        setPush((previous) => [...previous, newData]);
+        setProductItems((previous) => [...previous, newData]);
         setAutoIncrement((prev) => prev + 1);
     };
     
     const deleteHandler = (index) => {
-        setPush((previous) => previous.filter((_, i) => i !== index));
+        setProductItems((previous) => previous.filter((_, i) => i !== index));
     };
 
     return(
@@ -114,7 +117,7 @@ const Produk = () => {
                     </div>
                 </form>
             </div>
-            <TableMakanan push={push} onDelete={deleteHandler}/>
+            <TableMakanan onDelete={deleteHandler}/>
         </div>
     )
 }

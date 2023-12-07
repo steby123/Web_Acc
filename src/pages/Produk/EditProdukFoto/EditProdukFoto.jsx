@@ -1,12 +1,13 @@
 import classes from './EditProdukFoto.module.css';
 
-const EditProdukFoto = () => {
+const EditProdukFoto = ({imageURL, name}) => {
+    console.log(imageURL);
     return(
         <div className={classes.editFoto}>
-            <img src='' alt='' />
+            <img src={imageURL} alt={imageURL} />
 
             <div className={classes.editiFotoNama}>
-                <h2> </h2>
+                <h2> {name} </h2>
             </div>
         </div>
     )

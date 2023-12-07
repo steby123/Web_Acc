@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import EditProdukIcon from '../../../assets/edit_FILL0_wght400_GRAD0_opsz24.svg';
 import DeleteProdukIcon from '../../../assets/delete_FILL0_wght400_GRAD0_opsz24.svg';
 import classes from './TableMakanan.module.css';
 
-const TableMakanan = ({ push, onDelete }) => {
+import { AppContext } from '../../../context/context';
+
+const TableMakanan = ({ onDelete }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredPush = push.filter((item) =>
+    const { productItems } = useContext(AppContext);
+
+    const filteredPush = productItems.filter((item) =>
         Object.values(item).some((value) =>
             value.toString().toLowerCase().includes(searchTerm.toLowerCase())
         )
     );
-    console.log(push);
 
     return (
         <div className={classes.te}>

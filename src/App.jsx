@@ -7,10 +7,12 @@ import SignUp from './pages/signup/SignUp';
 import EditProduk from './pages/Produk/EditProduk/EditProduk';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
+import { AppProvider } from './context/context';
+
 const App =() => {
 
   return (
-    <>
+    <AppProvider>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
@@ -39,7 +41,7 @@ const App =() => {
           </Route>
         </Switch>
       </BrowserRouter>
-    </>
+    </AppProvider>
   )
 }
 
