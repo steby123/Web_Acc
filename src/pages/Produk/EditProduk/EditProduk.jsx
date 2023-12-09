@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import classes from './EditProduk.module.css';
 import Navbar from '../../../component/Navbar/Navbar';
 import Sidebar from '../../../component/Sidebar/Sidebar';

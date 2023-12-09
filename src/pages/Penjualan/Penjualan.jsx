@@ -1,18 +1,19 @@
-    import { useEffect, useState } from 'react';
+    import { useEffect, useState, useContext } from 'react';
     import Navbar from '../../component/Navbar/Navbar';
     import Sidebar from '../../component/Sidebar/Sidebar';
     import classes from'./Penjualan.module.css';
     import Title from './title';
     import deleteButton from '../../assets/delete_FILL0_wght400_GRAD0_opsz24.svg';
+    import { AppContext } from '../../context/context';
 
     const Penjualan = () => {
-        const number = Math.floor(Math.random().toLocaleString() * 100);
+        const [number, setNumber] = useState(1);
         const [menuData, setMenuData] = useState([]);
-        const [filteredMenu, setFilteredMenu] = useState([]);
         const [selectedItems, setSelectedItems] = useState([]);
         const [searchTerm, setSearchTerm] = useState('');
         const totalBayar = selectedItems.reduce((total, item) => total + item.price, 0);
         const [url, setUrl] = useState('http://localhost:3000/food');
+        const {filteredMenu, setFilteredMenu } = useState(AppContext);
 
         const handlePilih = (selectedItem) => {
             setSelectedItems((prevSelectedItems) => [
@@ -21,8 +22,13 @@
                     nama: selectedItem.title,
                     qty: 1,
                     price: selectedItem.price,
+                    tableName: selectedItem.tableName
                 },
             ]);
+        }
+
+        const clickHandler = () => {
+            setNumber((prevNumber) => prevNumber + 1);
         }
 
         useEffect(() => {
@@ -41,7 +47,7 @@
                 .catch((err) => {
                     console.log(err.message);
                 });
-        }, [url, searchTerm]);
+        }, [url, searchTerm, setFilteredMenu]);
 
         return(
             <div className={classes.container}>
@@ -60,14 +66,14 @@
                 </div>
 
                 <div className={classes.foto}>
-                    {filteredMenu.map((item) => (
+                    {filteredMenu && filteredMenu.map((item) => (
                         <div className={classes.image} key={item.id}>
                             <img className={classes.makanan1} src={item.src} alt={item.title} />
                             <div className={classes.content}>
                                 <div className={classes.text}>{item.title}</div>
                                 <div className={classes.price}>Rp.{item.price}</div>
                             </div>
-                            <button className={classes.center_button} onClick={() => handlePilih(item.id)}>Pilih</button>
+                            <button className={classes.center_button} onClick={() => handlePilih(item)}>Pilih</button>
                         </div>
                     ))}
                 </div>
@@ -83,8 +89,8 @@
                         </div>
                         <div>
                             <input 
-                                type={classes.number} 
-                                className="number"      
+                                type="number"
+                                className={classes.number}     
                             />
                         </div>
                     </div>
@@ -95,8 +101,8 @@
                         </div>
                         <div>
                             <input 
-                                type={classes.date} 
-                                className="number" 
+                                type="date"
+                                className={classes.number}
                             />
                         </div>
                     </div>
@@ -117,7 +123,7 @@
                                         <tbody>
                                             {selectedItems.map((item, index) => (
                                                 <tr key={index}>
-                                                    <td>{item.title}</td>
+                                                    <td>{item.nama}</td>
                                                     <td>{item.qty}</td>
                                                     <td>Rp.{item.price}</td>
                                                     <td className={classes.centerItem}>
@@ -127,6 +133,7 @@
                                             ))}
                                         </tbody>
                                     </table>
+                                    
                                 </div>
                             ) : (
                                 <div className={classes.belum}>
@@ -144,14 +151,14 @@
                             <p className={classes.biaya}>
                                 Rp.{totalBayar}
                             </p>
-                        </div>
+                        </div>      
                     </div>
                     <hr />
                     <div className={classes.steby6}>
                         <p>No.Order</p>
                         <p>#0RD00{number}</p>
                     </div>
-                    <button className={classes.proses}>
+                    <button onClick={clickHandler}className={classes.proses}>
                         Proses Pesanan
                     </button>
                 </div>

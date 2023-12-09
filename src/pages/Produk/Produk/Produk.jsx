@@ -1,4 +1,6 @@
 import { useState, useContext } from 'react'
+import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
+import { db } from '../../../firebase/firebase';
 import Navbar from '../../../component/Navbar/Navbar';
 import Sidebar from '../../../component/Sidebar/Sidebar';
 import classes from './Produk.module.css';
@@ -10,13 +12,13 @@ const Produk = () => {
     const [name, setName] = useState('');
     const [harga, setHarga] = useState('');
     const [imageURL, setImageURL] = useState('');
-    const [autoIncrement, setAutoIncrement] = useState(1);
     const [error, setError] = useState(false);
     const [focus, setFocus] = useState(false);
     const [focus1, setFocus1] = useState(false);
     const [focus2, setFocus2] = useState(false);
-
-    const { productItems, setProductItems } = useContext(AppContext);
+    const [users, setUsers] = useState([]);
+    const userCollectionRef = collection(db, "Website_Penjualan");
+    const { productItems, setProductItems, setAutoIncrement, autoIncrement } = useContext(AppContext);
 
     const resetHandler = () => {
         setName('');
@@ -24,7 +26,7 @@ const Produk = () => {
         setImageURL('');
     }
 
-    const formValidation = (e) => {
+    const formValidation = async (e) => {
         e.preventDefault();
         const newData = {
             name,
@@ -32,13 +34,25 @@ const Produk = () => {
             imageURL,
             autoIncrement
         };
-        console.log(name, harga, imageURL, autoIncrement);
-
-        if(name.trim().toString() && harga <= 4){
+    
+        try {
+            await addDoc(userCollectionRef, {
+                Harga: newData.harga,
+                Nama_Makanan: newData.name,
+                Nomor: newData.autoIncrement
+            });
+    
+            const data = await getDocs(userCollectionRef);
+            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
+    
+        if (name.trim().toString() && harga <= 4) {
             return false;
         }
         setProductItems((previous) => [...previous, newData]);
-        setAutoIncrement((prev) => prev + 1);
+        setAutoIncrement((prevNum) => prevNum + 1);
     };
     
     const deleteHandler = (index) => {
@@ -59,7 +73,7 @@ const Produk = () => {
                 </div>
                 <div>
                     <h5 style={{color:'rgba(171, 171, 171, 1)'}}>Kode Menu</h5>
-                    <h5>NM23-00{autoIncrement}</h5>
+                    <h5 name="Nomor">NM23-00{autoIncrement}</h5>
                 </div>
                 <form onSubmit={formValidation} className={classes.isi}>
                     <div className={classes.kolom}>
@@ -68,6 +82,7 @@ const Produk = () => {
                             className={`${classes.input} ${error ? classes.error : ''} ${focus ? classes.focus : ''}`}
                             placeholder='Nama Makanan'
                             type='text'
+                            name='Nama_Makanan'
                             onChange={(e) => {
                                 const value = e.target.value;
                                 if (value.trim().length <= 0) {
@@ -87,6 +102,7 @@ const Produk = () => {
                             className={`${classes.input} ${focus1 ? classes.focus1 : ''}`}
                             placeholder='Harga'
                             type='number'
+                            name='Harga'
                             onChange={(e) => setHarga(e.target.value)}
                             onFocus={() => setFocus1(true)}
                             onBlur={() => setFocus1(false)}

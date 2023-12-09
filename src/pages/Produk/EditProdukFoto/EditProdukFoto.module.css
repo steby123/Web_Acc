@@ -15,13 +15,14 @@
 /* Example styling for the image */
 .editFoto img {
     width: 100%;
-    height: auto;
+    max-height: 100%;
     border-radius: 5px; /* Optional: Add border-radius to the image */
 }
 
 /* Example styling for the text container */
 .editiFotoNama {
-    text-align: left; /* Optional: Adjust text alignment */
+    text-align: left; 
+    margin-top: -45%;
 }
 
 /* Example styling for the text inside the container */
