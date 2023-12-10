@@ -1,10 +1,10 @@
-    import { useEffect, useState, useContext } from 'react';
+    import { useEffect, useState } from 'react';
     import Navbar from '../../component/Navbar/Navbar';
     import Sidebar from '../../component/Sidebar/Sidebar';
     import classes from'./Penjualan.module.css';
     import Title from './title';
     import deleteButton from '../../assets/delete_FILL0_wght400_GRAD0_opsz24.svg';
-    import { AppContext } from '../../context/context';
+import { AppContext } from '../../context/context';
 
     const Penjualan = () => {
         const [number, setNumber] = useState(1);
@@ -66,7 +66,7 @@
                 </div>
 
                 <div className={classes.foto}>
-                    {filteredMenu && filteredMenu.map((item) => (
+                    {filteredMenu &&filteredMenu.map((item) => (
                         <div className={classes.image} key={item.id}>
                             <img className={classes.makanan1} src={item.src} alt={item.title} />
                             <div className={classes.content}>

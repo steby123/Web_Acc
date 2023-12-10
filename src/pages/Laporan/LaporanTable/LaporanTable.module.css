@@ -1,0 +1,44 @@
+.table_penjualan {
+    width: 55%; /* Updated for responsiveness */
+    min-height: 5%;
+    border-collapse: collapse;
+    margin-top: 10%;
+    margin-left: -42%;
+}
+
+.header {
+    width: 0;
+    background-color: #f2f2f2;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+}
+
+.cell {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+    height: 20px;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .box {
+        width: 90%;
+        margin: 20% auto;
+    }
+
+    .context {
+        width: 100%;
+    }
+
+    .table_penjualan {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .header,
+    .cell {
+        padding: 6px;
+    }
+}

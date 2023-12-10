@@ -7,6 +7,11 @@ export const AppProvider = ({children}) => {
     const [productItems, setProductItems] = useState([]);
     const [autoIncrement, setAutoIncrement] = useState(1);
     const [filterdMenu, setFilteredMenu] = useState([]);
+    const addProductItem = (newItem) => {
+        setProductItems((prevItems) => [...prevItems, newItem]);
+        setAutoIncrement((prevNum) => prevNum + 1);
+        setFilteredMenu((prevFilteredMenu) => [...prevFilteredMenu, newItem]);
+      };
 
     const contextState = {
         productItems,
@@ -14,7 +19,8 @@ export const AppProvider = ({children}) => {
         autoIncrement,
         setAutoIncrement,
         filterdMenu,
-        setFilteredMenu
+        setFilteredMenu,
+        addProductItem
     };
 
     return <AppContext.Provider value={contextState}>

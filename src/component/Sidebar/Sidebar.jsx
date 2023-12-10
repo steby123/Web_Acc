@@ -26,10 +26,6 @@ const Sidebar = () => {
             <img src={ShopIcon} alt="Rumah" className="icon" />
             Penjualan
           </Link>
-          <Link to="/customer" className="link">
-            <img src={CustomerIcon} alt='customer' className='icon' />
-            Customer
-          </Link>
           <Link to="/produk" className="link">
             <img src={ProductIcon} alt="Rumah" className="icon" />
             Produk

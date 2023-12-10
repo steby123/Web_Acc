@@ -2,12 +2,12 @@
     background-color: rgba(255, 255, 255, 1);
     padding: 30px;
     border-radius: 10px;
-    margin-top: -2.5%;
+    margin-top: 23.5%;
     margin-right: auto; 
     padding: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
     min-width: 100vh;
-    min-height: 50%;
+    min-height: 100%;
 }
 
 .tambah {
@@ -47,6 +47,7 @@
 /* Add styles for the table and its components */
 table {
     width: 100%;
+    min-height: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
@@ -86,6 +87,10 @@ tbody{
 
 tbody tr{
     border: 1px solid #dddddd;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5; 
 }
 
 .thumbnail {

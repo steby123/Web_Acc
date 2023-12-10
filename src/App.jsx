@@ -2,6 +2,7 @@ import LoginForm from './pages/Login/Login';
 import Penjualan from './pages/Penjualan/Penjualan';
 import Produk from './pages/Produk/Produk/Produk';
 import DashBoard from './pages/Dashboard/Dashboard';
+import Laporan from './pages/Laporan/Laporan/Laporan';
 import NotFound from './pages/NotFound/NotFound';
 import SignUp from './pages/signup/SignUp';
 import EditProduk from './pages/Produk/EditProduk/EditProduk';
@@ -32,6 +33,9 @@ const App =() => {
           </Route>
           <Route path="/edit-produk/:id">
             <EditProduk />
+          </Route>
+          <Route path="/laporan">
+            <Laporan />
           </Route>
           <Route path="/not-found">
             <NotFound />
