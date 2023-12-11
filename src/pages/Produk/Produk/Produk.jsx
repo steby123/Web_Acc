@@ -44,6 +44,7 @@ const Produk = () => {
     
             const data = await getDocs(userCollectionRef);
             setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            console.log("collection succesfully inserted");
         } catch (error) {
             console.error('Error creating user:', error);
         }
@@ -55,7 +56,18 @@ const Produk = () => {
         setAutoIncrement((prevNum) => prevNum + 1);
     };
     
-    const deleteHandler = (index) => {
+    const deleteHandler = async (index) => {
+        try{
+            const querySnapShot = await getDocs(userCollectionRef);
+
+            querySnapShot.forEach(async (doc) => {
+                await deleteDoc(doc.ref)
+            })
+
+            console.log("collection successfully delete");
+        }catch(error){
+            console.log(error.message)
+        }
         setProductItems((previous) => previous.filter((_, i) => i !== index));
     };
 
